@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         isKnockback = true;
 
         spriteRenderer.color = Color.white;
-        CameraShake.Instance.Shake(0.2f, 0.3f);
+        //CameraShake.Instance.Shake(0.2f, 0.3f);
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
