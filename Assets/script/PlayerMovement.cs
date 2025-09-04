@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private Rigidbody2D rb;
-    public ParticleSystem particleHit; // !
-    public PlayerHealth health; // !
+    public ParticleSystem particleHit;
+    public PlayerHealth health; 
 
     private bool canTakeDamage = true;
     private bool isGrounded;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
-        health = FindAnyObjectByType<PlayerHealth>(); // !
+        health = FindAnyObjectByType<PlayerHealth>(); 
     }
 
     public void Update()
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground")) // !
+        if (collision.collider.CompareTag("Ground")) 
         {
             isGrounded = true;
         }
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             health.TakeDamage(5);
             StartCoroutine(ReactToSpike(knockDir));
         }
-        if (collision.collider.CompareTag("Enemy") && canTakeDamage) // !
+        if (collision.collider.CompareTag("Enemy") && canTakeDamage) 
         {
             particleHit.Play();
             Vector2 knockDir = new Vector2(-Mathf.Sign(lastHorizontal), 0.5f);
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         isKnockback = true;
 
         spriteRenderer.color = Color.white;
-        //CameraShake.Instance.Shake(0.2f, 0.3f);
+        
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(knockDir * knockbackForce, ForceMode2D.Impulse);
